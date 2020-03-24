@@ -1,0 +1,28 @@
+{
+  "name": "exercise-web-myblog",
+  "version": "1.0.0",
+  "description": "Blog experimental com fins educativos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michetk/exercise-web-myblog.git"
+  },
+  "author": "Michel Miguel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michetk/exercise-web-myblog/issues"
+  },
+  "homepage": "https://github.com/michetk/exercise-web-myblog#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "express-sequelize": "0.0.4",
+    "mysql2": "^2.1.0",
+    "nodemon": "^2.0.2",
+    "sequelize": "^5.21.5"
+  }
+}
