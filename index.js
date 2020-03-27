@@ -3,6 +3,8 @@ const app = express()
 const connection = require('./database/database')
 const bodyParser = require('body-parser')
 const handlebars = require('express-handlebars')
+const categoriesController = require('./categories/categoriesController')
+const articlesController = require('./articles/articlesContoller')
 
 // path static
 app.use(express.static('public'))
@@ -20,6 +22,9 @@ app.engine('handlebars', handlebars({
 app.set('view engine', 'handlebars')
 
 //rotas
+app.use('/', categoriesController)
+app.use('/', articlesController)
+
 app.get('/', (req, res) => {
     res.render('index')
 })
