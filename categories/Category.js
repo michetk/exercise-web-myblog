@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const connection = require('../database/database')
 
-const Category = connecton.define('categories', {
+const Category = connection.define('categories', {
     title: {
         type: Sequelize.STRING,
         allowNull: false
@@ -11,5 +11,7 @@ const Category = connecton.define('categories', {
         allowNull: false
     }
 })
+
+//Category.sync({force: true})
 
 module.exports = Category
