@@ -3,8 +3,8 @@ const app = express()
 const connection = require('./database/database')
 const bodyParser = require('body-parser')
 const handlebars = require('express-handlebars')
-const categoriesController = require('./categories/categoriesController')
-const articlesController = require('./articles/articlesContoller')
+const categoriesController = require('./categories/CategoriesController')
+const articlesController = require('./articles/ArticlesContoller')
 
 // path static
 app.use(express.static('public'))
