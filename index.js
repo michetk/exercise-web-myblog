@@ -5,6 +5,8 @@ const bodyParser = require('body-parser')
 const handlebars = require('express-handlebars')
 const categoriesController = require('./categories/CategoriesController')
 const articlesController = require('./articles/ArticlesContoller')
+const Category = require('./categories/Category')
+const Article = require('./articles/Article')
 
 // path static
 app.use(express.static('public'))
