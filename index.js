@@ -28,8 +28,36 @@ app.use('/', categoriesController)
 app.use('/', articlesController)
 
 app.get('/', (req, res) => {
-    res.render('index')
+    Article.findAll({
+        raw: true,
+        order: [
+            ['id', 'DESC']
+        ]
+    }).then(articles => {
+        res.render('index', {
+            articles: articles
+        })
+    })
 })
+
+app.get('/:slug', (req, res) => {
+    let slug = req.params.slug
+    Article.findOne({
+        where: {
+            slug: slug
+        },
+    }).then(article => {
+        if (slug != undefined) {
+            res.render('article', {article: article})
+        } else {
+            res.redirect('/')
+        }
+    }).catch(err => {
+        res.redirect('/')
+    })
+})
+
+
 
 // database
 connection

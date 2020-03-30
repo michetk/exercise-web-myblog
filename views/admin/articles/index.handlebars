@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h1>Artigos</h1>
+            <a href="/admin/articles/new" class="btn btn-success m-2 ">Criar novo artigo</a>
+            <div class="table-responsive-sm">
+                <table class="table table-sm table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Título</th>
+                            <th scope="col">Slug</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+
+                    <body>
+                        {{#each articles}}
+                        <tr class="text-muted">
+                            <th>
+                                <h6>{{this.id}}</h6>
+                            </th>
+                            <th>
+                                <h6>{{this.title}}</h6>
+                            </th>
+                            <th>
+                                <h6>{{this.slug}}</h6>
+                            </th>
+                            <th>
+                                <h6>{{this.category.title}}</h6>
+                            </th>
+                            <th>
+                                <form action="/admin/articles/edit/{{id}}" method="GET" class="d-inline">
+                                    <input type="hidden" name="id" value="{{id}}">
+                                    <button class="btn btn-warning btn-sm" type="submit">Editar</button>
+                                </form>
+                                <form action="/articles/delete" method="POST" class="d-inline formdelete">
+                                    <input type="hidden" name="id" value="{{id}}">
+                                    <button class="btn btn-danger btn-sm" type="submit">Deletar</button>
+                                </form>
+                            </th>
+                        </tr>
+                        {{/each}}
+                    </body>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
