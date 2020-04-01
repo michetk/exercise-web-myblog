@@ -3,8 +3,9 @@ const router = express.Router()
 const Category = require('../categories/Category')
 const Article = require('../articles/Article')
 const slugify = require('slugify')
+const adminAuth = require('../middlewares/adminauth')
 
-router.get('/admin/articles', (req, res) => {
+router.get('/admin/articles', adminAuth, (req, res) => {
     Article.findAll({
         include: [{
             model: Category
@@ -16,7 +17,7 @@ router.get('/admin/articles', (req, res) => {
     })
 })
 
-router.get('/admin/articles/new', (req, res) => {
+router.get('/admin/articles/new', adminAuth, (req, res) => {
     Category.findAll({
         order: [
             ['title', 'ASC']
@@ -62,7 +63,7 @@ router.post('/articles/delete', (req, res) => {
     }
 })
 
-router.get('/admin/articles/edit/:id', (req, res) => {
+router.get('/admin/articles/edit/:id', adminAuth, (req, res) => {
     let id = req.params.id
     Article.findByPk(id).then(article => {
         if (id != undefined) {
@@ -126,7 +127,16 @@ router.get('/article/page/:num', (req, res) => {
             next = true
         }
 
+        if (page == 1) {
+            prevpage = false
+        } else {
+            prevpage = true
+        }
+
         let result = {
+            pagenext: (parseInt(page) + 1),
+            pageprev: (parseInt(page) - 1),
+            prevpage: prevpage,
             next: next,
             articles: articles
         }

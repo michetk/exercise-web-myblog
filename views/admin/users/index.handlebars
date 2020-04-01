@@ -1,0 +1,40 @@
+<div class="container-fluid">
+    <div class="rol">
+        <div class="col col-lg-12">
+            <h2 class="mt-3">Usuários</h2>
+            <a href="/admin/users/create"><button class="btn btn-success mb-3">Criar novo usuário</button></a>
+            <table class="table table-sm table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">E-mail</th>
+                            <th scope="col">Opções</th>
+                        </tr>
+                    </thead>
+
+                    <body>
+                        {{#each users}}
+                        <tr class="text-muted">
+                            <th>
+                                <h6>{{this.id}}</h6>
+                            </th>
+                            <th>
+                                <h6>{{this.email}}</h6>
+                            </th>
+                            <th>
+                                <form action="/admin/categories/edit/{{id}}" method="GET" class="d-inline">
+                                    <input type="hidden" name="id" value="{{id}}">
+                                    <button class="btn btn-warning btn-sm" type="submit">Editar</button>
+                                </form>
+                                <form action="/categories/delete" method="POST" class="d-inline formdelete">
+                                    <input type="hidden" name="id" value="{{id}}">
+                                    <button class="btn btn-danger btn-sm" type="submit">Deletar</button>
+                                </form>
+                            </th>
+                        </tr>
+                        {{/each}}
+                    </body>
+                </table>
+        </div>
+    </div>
+</div>

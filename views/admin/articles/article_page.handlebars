@@ -15,4 +15,14 @@
         <h2 class="text-danger">Não tem ARTIGOS</h2>
         {{/each}}
     </div>
+    <div class="row">
+        <div class="col col-lg-12">
+            {{#if result.prevpage}}
+            <a href="/article/page/{{result.pageprev}}" style="float: left">&lt;&lt;&lt; Prev</a>
+            {{/if}}
+            {{#if result.next}}
+            <a href="/article/page/{{result.pagenext}}" style="float: right">Next &gt;&gt;&gt;</a>
+            {{/if}}
+        </div>
+    </div>
 </div>

@@ -5,8 +5,23 @@ const bodyParser = require('body-parser')
 const handlebars = require('express-handlebars')
 const categoriesController = require('./categories/CategoriesController')
 const articlesController = require('./articles/ArticlesContoller')
+const usersController = require('./users/UserController')
 const Category = require('./categories/Category')
 const Article = require('./articles/Article')
+const User = require('./users/User')
+const session = require('express-session')
+const flash = require('connect-flash')
+
+// session
+app.use(session({
+    secret: Math.sqrt((9*8)) + 'asdfjASJUOL' + Math.sqrt((5*8+3)),
+    cookie: {
+        maxAge: 72000000
+    },
+    resave: true,
+    saveUninitialized: true
+}))
+app.use(flash())
 
 // path static
 app.use(express.static('public'))
@@ -26,6 +41,7 @@ app.set('view engine', 'handlebars')
 //rotas
 app.use('/', categoriesController)
 app.use('/', articlesController)
+app.use('/', usersController)
 
 app.get('/', (req, res) => {
     Article.findAll({
@@ -93,7 +109,6 @@ app.get('/category/:slug', (req, res) => {
         res.redirect('/')
     })
 })
-
 
 
 // database
